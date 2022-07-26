@@ -9,6 +9,12 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    let tasksArray = [
+        Task(title: "Clean my room"),
+        Task(title: "Make a coffe"),
+        Task(title: "Learn how to play chess")
+    ]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -16,3 +22,14 @@ class ViewController: UIViewController {
 
 }
 
+extension ViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return tasksArray.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell()
+        cell.textLabel?.text = tasksArray[indexPath.row].title
+        return cell
+    }
+}
