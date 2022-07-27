@@ -32,12 +32,17 @@ extension ViewController: UITableViewDelegate {
             self.tasksArray[indexPath.row] = task
             
             guard let cell = tableView.cellForRow(at: indexPath) as? CustomTableViewCell else { return }
-            cell.taskSwitch.isOn = true
+            cell.taskSwitch.isOn = !cell.taskSwitch.isOn
+           
+            //adding animation for swipe
             complete(true)
             
             print("Complete")
         }
         return UISwipeActionsConfiguration(actions: [action])
+    }
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return .delete
     }
 }
 
@@ -61,6 +66,13 @@ extension ViewController: CheckTableViewCellDelegate {
         let newTask = Task(title: task.title, isComplete: switched)
         tasksArray[indexPath.row] = newTask
         print(switched)
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            tasksArray.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
     }
 }
 
