@@ -20,8 +20,13 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-
-
+    @IBAction func startEditingTapped(_ sender: UIButton) {
+        tableView.isEditing = !tableView.isEditing
+    }
+    
+    @IBAction func addButtonTapped(_ sender: UIButton) {
+    }
+    
 }
 
 extension ViewController: UITableViewDelegate {
@@ -73,6 +78,11 @@ extension ViewController: CheckTableViewCellDelegate {
             tasksArray.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
         }
+    }
+    
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        let task = tasksArray.remove(at: sourceIndexPath.row)
+        tasksArray.insert(task, at: destinationIndexPath.row)
     }
 }
 
