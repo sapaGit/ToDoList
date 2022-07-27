@@ -7,11 +7,17 @@
 
 import UIKit
 
+protocol CheckTableViewCellDelegate: AnyObject {
+    func checkTableViewCell(cell: CustomTableViewCell, didSwitchCell switched: Bool)
+}
+
 class CustomTableViewCell: UITableViewCell {
 
     @IBOutlet var label: UILabel!
     
+    weak var delegate: CheckTableViewCellDelegate?
     @IBAction func switchTapped(_ sender: UISwitch) {
+        delegate?.checkTableViewCell(cell: self, didSwitchCell: sender.isOn)
     }
     
 }

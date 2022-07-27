@@ -8,6 +8,11 @@
 import Foundation
 
 struct Task {
-    let title: String
-    let isComplete = false
+    var title: String
+    var isComplete: Bool
+    
+    init(title: String, isComplete: Bool = false) {
+        self.title = title
+        self.isComplete = isComplete
+    }
 }
