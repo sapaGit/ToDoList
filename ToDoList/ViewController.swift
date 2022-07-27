@@ -24,6 +24,24 @@ class ViewController: UIViewController {
 
 }
 
+extension ViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let action = UIContextualAction(style: .normal, title: "Complete") { action, view, complete in
+           
+            let task = self.tasksArray[indexPath.row].completeTask()
+            self.tasksArray[indexPath.row] = task
+            
+            guard let cell = tableView.cellForRow(at: indexPath) as? CustomTableViewCell else { return }
+            cell.taskSwitch.isOn = true
+            complete(true)
+            
+            print("Complete")
+        }
+        return UISwipeActionsConfiguration(actions: [action])
+    }
+}
+
+
 extension ViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tasksArray.count
@@ -45,3 +63,4 @@ extension ViewController: CheckTableViewCellDelegate {
         print(switched)
     }
 }
+

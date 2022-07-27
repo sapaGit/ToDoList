@@ -79,6 +79,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="label" destination="j1i-Jb-0Gl" id="8nW-jH-QSZ"/>
+                                            <outlet property="taskSwitch" destination="Gl5-WA-qex" id="DQL-v5-98W"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

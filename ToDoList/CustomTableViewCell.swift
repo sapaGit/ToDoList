@@ -14,6 +14,7 @@ protocol CheckTableViewCellDelegate: AnyObject {
 class CustomTableViewCell: UITableViewCell {
 
     @IBOutlet var label: UILabel!
+    @IBOutlet var taskSwitch: UISwitch!
     
     weak var delegate: CheckTableViewCellDelegate?
     @IBAction func switchTapped(_ sender: UISwitch) {

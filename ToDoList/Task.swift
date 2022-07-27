@@ -15,4 +15,8 @@ struct Task {
         self.title = title
         self.isComplete = isComplete
     }
+    
+    func completeTask() -> Task {
+        return Task(title: title, isComplete: !isComplete)
+    }
 }
