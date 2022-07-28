@@ -26,6 +26,15 @@ class ViewController: UIViewController {
     
     @IBAction func addButtonTapped(_ sender: UIButton) {
     }
+    @IBSegueAction func toDoViewController(_ coder: NSCoder) -> ToDoViewController? {
+        let vc =  ToDoViewController(coder: coder)
+        guard let indexPath = tableView.indexPathForSelectedRow else {return ToDoViewController()}
+        
+        let task = tasksArray[indexPath.row]
+        vc?.task = task
+        
+        return vc
+    }
     
 }
 
