@@ -41,7 +41,7 @@ class ViewController: UIViewController {
         let vc =  ToDoViewController(coder: coder)
         
         vc?.delegate = self
-        
+        vc?.presentationController?.delegate = self
         return vc
     }
     
@@ -118,6 +118,13 @@ extension ViewController: ToDoViewControllerDelegate {
         }
         dismiss(animated: true, completion: nil)
     }
-    
-    
+
+}
+
+extension ViewController: UIAdaptivePresentationControllerDelegate {
+    func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
+        if let indexPath = tableView.indexPathForSelectedRow {
+            tableView.deselectRow(at: indexPath, animated: true)
+        }
+    }
 }
