@@ -47,7 +47,7 @@
                                 <buttonConfiguration key="configuration" style="plain" title="+"/>
                                 <connections>
                                     <action selector="addButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cXW-t4-UfA"/>
-                                    <segue destination="LXR-SO-JZp" kind="show" id="vDf-0g-u29"/>
+                                    <segue destination="LXR-SO-JZp" kind="show" destinationCreationSelector="toDoViewControllerAdd:" id="vDf-0g-u29"/>
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="SX0-H8-2Lt">
@@ -141,6 +141,9 @@
                                 </constraints>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="square.and.arrow.down.fill" catalog="system" title=""/>
+                                <connections>
+                                    <action selector="saveTapped:" destination="LXR-SO-JZp" eventType="touchUpInside" id="OW3-EV-q0S"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="bFt-Ow-nxT"/>
@@ -165,7 +168,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="nyA-jn-vRJ"/>
+        <segue reference="vDf-0g-u29"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="square.and.arrow.down.fill" catalog="system" width="121" height="128"/>

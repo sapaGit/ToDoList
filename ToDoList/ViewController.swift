@@ -13,7 +13,7 @@ class ViewController: UIViewController {
     
     var tasksArray = [
         Task(title: "Clean my room"),
-        Task(title: "Make a coffe"),
+        Task(title: "Make a coffee"),
         Task(title: "Learn how to play chess")
     ]
     
@@ -32,6 +32,15 @@ class ViewController: UIViewController {
         
         let task = tasksArray[indexPath.row]
         vc?.task = task
+        
+        vc?.delegate = self
+        
+        return vc
+    }
+    @IBSegueAction func toDoViewControllerAdd(_ coder: NSCoder) -> ToDoViewController? {
+        let vc =  ToDoViewController(coder: coder)
+        
+        vc?.delegate = self
         
         return vc
     }
@@ -94,4 +103,21 @@ extension ViewController: CheckTableViewCellDelegate {
         tasksArray.insert(task, at: destinationIndexPath.row)
     }
 }
-
+ 
+extension ViewController: ToDoViewControllerDelegate {
+    func todoViewController(_ vc: ToDoViewController, didSaveTask task: Task) {
+        
+        if let indexPath = tableView.indexPathForSelectedRow {
+            // update
+            tasksArray[indexPath.row] = task
+            tableView.reloadRows(at: [indexPath], with: .none)
+        } else {
+            // create
+            tasksArray.append(task)
+            tableView.insertRows(at: [IndexPath(row: tasksArray.count-1, section: 0)], with: .automatic)
+        }
+        dismiss(animated: true, completion: nil)
+    }
+    
+    
+}
