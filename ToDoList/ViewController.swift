@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Foundation
 
 class ViewController: UIViewController {
 
@@ -33,7 +34,9 @@ class ViewController: UIViewController {
         let task = tasksArray[indexPath.row]
         vc?.task = task
         
+        
         vc?.delegate = self
+        vc?.presentationController?.delegate = self
         
         return vc
     }
@@ -41,7 +44,6 @@ class ViewController: UIViewController {
         let vc =  ToDoViewController(coder: coder)
         
         vc?.delegate = self
-        vc?.presentationController?.delegate = self
         return vc
     }
     
@@ -56,11 +58,11 @@ extension ViewController: UITableViewDelegate {
             
             guard let cell = tableView.cellForRow(at: indexPath) as? CustomTableViewCell else { return }
             cell.taskSwitch.isOn = !cell.taskSwitch.isOn
-           
+            
+            let arrayOfTasks = self.tasksArray
+            UserDefaults.standard.set(arrayOfTasks, forKey: "arrayOfTasks")
             //adding animation for swipe
             complete(true)
-            
-            print("Complete")
         }
         return UISwipeActionsConfiguration(actions: [action])
     }
